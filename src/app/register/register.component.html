@@ -1,0 +1,38 @@
+<!-- https://www.tutorialrepublic.com/snippets/preview.php?topic=bootstrap&file=simple-registration-form -->
+<div class="signup-form">
+    <form [formGroup]="formRegister" (ngSubmit)="onSubmit()">
+		<h2>Register</h2>
+		<p class="hint-text">Crie sua conta. É de graça e leva apenas um minuto!</p>
+        <div class="form-group">
+			<div class="row">
+				<div class="col-xs-6" [ngClass]="{ 'has-error': firstName.errors?.required }">
+                    <input type="text" class="form-control" name="first_name" formControlName="firstName" placeholder="Nome" >
+					<span *ngIf="firstName.errors?.required" class="help-block">Nome é obrigatório</span>
+                </div>
+				<div class="col-xs-6" [ngClass]="{ 'has-error': lastName.errors?.required }">
+                    <input type="text" class="form-control" name="last_name" formControlName="lastName" placeholder="Sobrenome" >
+					<span *ngIf="lastName.errors?.required" class="help-block">Sobrenome é obrigatório</span>
+                </div>
+			</div>        	
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': email.errors }">
+            <input type="email" class="form-control" name="email" formControlName="email" placeholder="Email" >
+            <span *ngIf="email.errors?.required" class="help-block">Email é obrigatório</span>
+            <span *ngIf="email.errors?.email" class="help-block">Endereço de e-mail inválido</span>
+                    
+        </div>
+		<div class="form-group" [ngClass]="{ 'has-error': password.errors }">
+            <input type="password" class="form-control" name="password" formControlName="password" placeholder="Senha" >
+            <div *ngIf="password.errors?.required" class="help-block">Senha é obrigatória</div>
+            <div *ngIf="password.errors?.minlength" class="help-block">Senha deve ter pelo menos 6 caracteres</div>
+        </div>
+		<div class="form-group" [ngClass]="{ 'has-error': confirmPassword.errors }">
+            <input type="password" class="form-control" name="confirm_password"  formControlName="confirmPassword" placeholder="Confirmar Senha" >
+            <div *ngIf="confirmPassword.errors?.required" class="help-block">Confirmação é obrigatória</div>
+            <div *ngIf="confirmPassword.errors?.mustMatch" class="help-block">Senhas devem ser iguais</div>
+        </div>        
+		<div class="form-group">
+            <button type="submit" [disabled]="!formRegister.valid" class="btn btn-success btn-lg btn-block">Cadastrar Agora</button>
+        </div>
+    </form>
+</div>

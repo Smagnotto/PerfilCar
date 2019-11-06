@@ -1,0 +1,33 @@
+<!-- https://www.tutorialrepublic.com/snippets/preview.php?topic=bootstrap&file=elegant-modal-login-form-with-avatar-icon -->
+
+<div class="modal-dialog modal-login">
+	<div class="modal-content">
+		<div class="modal-header">
+			<div class="avatar">
+				<img src="/assets/images/avatar.png" alt="Avatar">
+			</div>				
+			<h4 class="modal-title">Login</h4>	
+		</div>
+		<div class="modal-body">
+			<form [formGroup]="formLogin">
+				<div class="form-group" [ngClass]="{ 'has-error': username.errors?.required }">
+					<input type="text" class="form-control" name="username" placeholder="Username" formControlName="username">		
+					<span *ngIf="username.errors?.required" class="help-block">Username é obrigatório</span>
+				</div>
+				<div class="form-group" [ngClass]="{ 'has-error': password.errors?.required }">
+					<input type="password" class="form-control" name="password" placeholder="Password" formControlName="password">	
+					<span *ngIf="password.errors?.required" class="help-block">Senha é obrigatório</span>
+				</div>    
+				<div class="col-md-12 has-error" *ngIf="isPasswordOrUserInvalid">
+					<span class="help-block center">Usuário ou Senha inválida</span>  
+				</div> 
+				<div class="form-group">
+					<button type="submit" [disabled]="!formLogin.valid" class="btn btn-primary btn-lg btn-block login-btn">Login</button>
+				</div>
+			</form>
+		</div>
+		<div class="modal-footer">
+			<a [routerLink]="['/register']">Novo usuário? Click Aqui!</a>
+		</div>
+	</div>
+</div>
