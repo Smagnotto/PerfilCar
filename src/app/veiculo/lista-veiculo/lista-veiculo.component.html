@@ -1,16 +1,31 @@
 <div class="row col-md-12">
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>First Name</th>
-                <th>Last Name</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Diego</td>
-                <td>Saraiva</td>
-            </tr>
-        </tbody>
-    </table>
-</div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Ações</th>
+                    <th>Apelido</th>
+                    <th>Marca</th>
+                    <th>Modelo</th>
+                    <th>Ano Fabricação</th>
+                    <th>Ano Modelo</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let perfil of listaPerfil">
+                    <td>
+                        <button type="button" class="btn btn-primary btn-sm" [routerLink]="['/veiculos/detalhes', perfil.id]">
+                            Detalhes
+                        </button>
+                        <button type="button" class="btn btn-danger btn-sm" (click)="Delete(perfil.id)">
+                            Deletar
+                        </button>
+                    </td>
+                    <td>{{perfil.apelido}}</td>
+                    <td>{{perfil.marca}}</td>
+                    <td>{{perfil.modelo}}</td>
+                    <td>{{perfil.anoFabricacao}}</td>
+                    <td>{{perfil.anoModelo}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
