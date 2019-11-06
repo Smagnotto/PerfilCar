@@ -50,8 +50,7 @@ export class RegisterComponent implements OnInit {
   onSubmit() {
     if (this.formRegister.valid) {
       // Cria o cadastro
-
-      this.router.navigate['/login'];
+      this.router.navigate(['/login']);
     }
   }
 

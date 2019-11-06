@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms'
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { AuthenticationService } from '../shared/service/authentication.service';
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
@@ -10,9 +12,16 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
 
   formLogin: FormGroup
-  isPasswordOrUserInvalid: boolean = false;
+  returnUrl: string;
+  error = '';
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, 
+    private authenticationService: AuthenticationService, 
+    private route: ActivatedRoute) { 
+      if (this.authenticationService.currentUserValue) { 
+        this.router.navigate(['/veiculos']);
+    }
+  }
 
   ngOnInit() {
     this.formLogin = new FormGroup({
@@ -20,6 +29,7 @@ export class LoginComponent implements OnInit {
       password: new FormControl('', [Validators.required])
     });
 
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
 
   get username() {
@@ -31,13 +41,16 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    this.isPasswordOrUserInvalid = false;
     if (this.formLogin.valid) {
-      if (this.username.value == "admin" && this.password.value == "123") {
-      this.router.navigate['/veiculo/lista'];
-      }else {
-        this.isPasswordOrUserInvalid = true;
-      }
+      this.authenticationService.login(this.username.value, this.password.value)
+      .pipe(first())
+      .subscribe(
+          data => {
+              this.router.navigate([this.returnUrl]);
+          },
+          error => {
+              this.error = error;
+          });
     }
   }
 }
