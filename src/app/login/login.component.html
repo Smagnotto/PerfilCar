@@ -9,7 +9,7 @@
 			<h4 class="modal-title">Login</h4>	
 		</div>
 		<div class="modal-body">
-			<form [formGroup]="formLogin">
+			<form [formGroup]="formLogin" (ngSubmit)="onSubmit()">
 				<div class="form-group" [ngClass]="{ 'has-error': username.errors?.required }">
 					<input type="text" class="form-control" name="username" placeholder="Username" formControlName="username">		
 					<span *ngIf="username.errors?.required" class="help-block">Username é obrigatório</span>
