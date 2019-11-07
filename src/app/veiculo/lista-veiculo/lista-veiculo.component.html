@@ -13,7 +13,7 @@
             <tbody>
                 <tr *ngFor="let perfil of listaPerfil">
                     <td>
-                        <button type="button" class="btn btn-primary btn-sm" [routerLink]="['/veiculos/detalhes', perfil.id]">
+                        <button type="button" class="btn btn-primary btn-sm"  [routerLink]="['/veiculos/detalhes', perfil.id]">
                             Detalhes
                         </button>
                         <button type="button" class="btn btn-danger btn-sm" (click)="Delete(perfil.id)">
