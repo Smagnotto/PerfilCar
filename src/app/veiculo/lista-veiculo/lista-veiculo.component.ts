@@ -41,7 +41,7 @@ export class ListaVeiculoComponent implements OnInit {
   }]
 
   ngOnInit() {
-    //this.ListarPerfil();
+    this.ListarPerfil();
   }
 
   private ListarPerfil() {
@@ -50,9 +50,9 @@ export class ListaVeiculoComponent implements OnInit {
 
   Delete(id: number) {
     if (confirm("Deseja excluir o perfil selecionado?")) {
-      let index: number = this.listaPerfil.findIndex(x => x.id == id);
+      //let index: number = this.listaPerfil.findIndex(x => x.id == id);
 
-      this.listaPerfil.splice(index, 1);
+      //this.listaPerfil.splice(index, 1);
     }
   }
 

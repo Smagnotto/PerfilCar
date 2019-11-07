@@ -11,6 +11,10 @@ export class VeiculoService {
   constructor(private http: HttpClient) { }
 
   listaPerfils() {
-    return this.http.get<Perfil[]>(`${environment.apiUrl}/perfil/perfils`)
+    return this.http.get<Perfil[]>(`${environment.apiService}/perfil/perfils`)
+  }
+
+  detailsPerfil(id: number) {
+    return this.http.get<Perfil>(`${environment.apiService}/perfil/${id}`)
   }
 }

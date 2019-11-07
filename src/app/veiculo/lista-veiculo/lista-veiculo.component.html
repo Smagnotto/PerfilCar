@@ -2,29 +2,32 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>Ações</th>
                     <th>Apelido</th>
                     <th>Marca</th>
                     <th>Modelo</th>
                     <th>Ano Fabricação</th>
                     <th>Ano Modelo</th>
+                    <th>Ações</th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let perfil of listaPerfil">
-                    <td>
-                        <button type="button" class="btn btn-primary btn-sm"  [routerLink]="['/veiculos/detalhes', perfil.id]">
-                            Detalhes
-                        </button>
-                        <button type="button" class="btn btn-danger btn-sm" (click)="Delete(perfil.id)">
-                            Deletar
-                        </button>
-                    </td>
                     <td>{{perfil.apelido}}</td>
                     <td>{{perfil.marca}}</td>
                     <td>{{perfil.modelo}}</td>
                     <td>{{perfil.anoFabricacao}}</td>
                     <td>{{perfil.anoModelo}}</td>
+                    <td>
+                        <button type="button" class="btn-primary btn-sm" [routerLink]="['/veiculos/editar', perfil.id]" title="Editar"> 
+                            <span class="glyphicon glyphicon-pencil"></span>
+                        </button>
+                        <button type="button" class="btn-primary btn-sm" [routerLink]="['/veiculos/detalhes', perfil.id]" title="Detalhar">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </button>
+                        <button type="button" class="btn-danger btn-sm" (click)="Delete(perfil.id)" title="Deletar">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </button>
+                    </td>
                 </tr>
             </tbody>
         </table>

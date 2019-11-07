@@ -1,1 +1,72 @@
-<p>detalhes-veiculos works!</p>
+<form [formGroup]="form" (ngSubmit)="SavePerfil()">
+    <fieldset class="row col-md-12">
+        <legend>Informações do Proprietário</legend>
+        <div class="col-md-4 form-group" [ngClass]="{ 'has-error': isEditing && nomeProprietario.errors?.required }">
+            <label>Nome Proprietário</label>
+            <input type="text" class="form-control" formControlName="nomeProprietario" placeholder="Nome do Proprietário">
+			<span *ngIf="isEditing && nomeProprietario.errors?.required" class="help-block">Nome é obrigatório</span>
+        </div>
+        <div class="col-md-4 form-group" [ngClass]="{ 'has-error': isEditing && emailProprietario.errors?.required }">
+            <label>Email Proprietário</label>
+            <input type="text" class="form-control" formControlName="emailProprietario" placeholder="Email do Proprietário">
+			<span *ngIf="isEditing && emailProprietario.errors?.required" class="help-block">Email é obrigatório</span>
+        </div>
+        <div class="col-md-4 form-group" [ngClass]="{ 'has-error': isEditing && apelido.errors?.required }">
+            <label>Apelido</label>
+            <input type="text" class="form-control" formControlName="apelido" placeholder="Apelido do Proprietário">
+			<span *ngIf="isEditing && apelido.errors?.required" class="help-block">Apelido é obrigatório</span>
+        </div>
+    </fieldset>
+
+    <fieldset class="row col-md-12">
+        <legend>Dados do Veículo</legend>
+                <div class="col-md-2 form-group" [ngClass]="{ 'has-error': isEditing && anoFabricacao.errors?.required }">
+                    <label>Ano Fabricação</label>
+                    <input type="text" class="form-control" formControlName="anoFabricacao" placeholder="Ano de Fabricação">
+			<span *ngIf="isEditing && anoFabricacao.errors?.required" class="help-block">Fabricacão é obrigatório</span>
+        </div>
+                <div class="col-md-2 form-group" [ngClass]="{ 'has-error': isEditing && anoModelo.errors?.required }">
+                    <label>Ano Modelo</label>
+                    <input type="text" class="form-control" formControlName="anoModelo" placeholder="Ano do Modelo" >
+			<span *ngIf="isEditing && anoModelo.errors?.required" class="help-block">Modelo é obrigatório</span>
+        </div>
+                <div class="col-md-4 form-group" [ngClass]="{ 'has-error': isEditing && marca.errors?.required }">
+                    <label>Marca</label>
+                    <input type="text" class="form-control" formControlName="marca" placeholder="Marca">
+			<span *ngIf="isEditing && marca.errors?.required" class="help-block">Ano é obrigatório</span>
+        </div>
+                <div class="col-md-4 form-group" [ngClass]="{ 'has-error': isEditing && modelo.errors?.required }">
+                    <label>Modelo</label>
+                    <input type="text" class="form-control" formControlName="modelo" placeholder="Modelo" >
+			<span *ngIf="isEditing && modelo.errors?.required" class="help-block">Ano é obrigatório</span>
+        </div>
+    </fieldset>
+
+    <fieldset class="row col-md-12">
+        <legend>Informações</legend>
+        <div class="row">
+            <div class="col-md-8 form-group">
+                <label>Informações Adicionais</label> <br />
+                <textarea class="form-control" formControlName="informacoesAdicionais"  rows="10" cols="100"></textarea>
+            </div>
+            <div class="col-md-4 form-group">
+                <label>Data/Hora</label>
+                <input type="text" class="form-control" formControlName="timestamp" >
+            </div>
+        </div>
+
+    <div class="row">
+        <button type="button" class="btn btn-warning pull-right" [routerLink]="['/veiculos']">
+            <span class="glyphicon glyphicon-menu-left"></span>Voltar...
+        </button>
+        <button *ngIf="isEditing" type="submit" class="btn btn-primary pull-right"> 
+            <span class="glyphicon glyphicon-floppy-disk"></span>Salvar...
+        </button>
+    </div>
+</fieldset>
+
+          
+    <ng-template #loading>
+        Loading stuff...
+    </ng-template>
+</form>
