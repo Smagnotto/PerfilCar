@@ -80,8 +80,6 @@ export class DetalhesVeiculosComponent implements OnInit {
     return this.form.get('timestamp')
   }
 
-
-
   private Details(id: number) {
     //Carrega o form 
     this.detail = this.service.detailsPerfil(id).pipe(
